@@ -1,36 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person'
+import UserInput from './UserInput/UserInput'
+import UserOutput from './UserOutput/UserOutput'
 
 class App extends Component {
 
-  state = {
-    persons : [
-      { name : 'Max', age : 28},
-      { name : 'Manu', age : 25},
-      { name : 'Step', age : 26},
-    ]
+  state = [
+    {name : 'Pushpak', job : 'Dev'},
+    {name : 'Avani', job : 'QA'}
+  ]
+
+  changeNames(event)
+  { 
+    this.setState([ {name : event.target.value, job : 'Dev'},
+    {name : 'Avani 3', job : 'QA'}]
+     )
   }
 
-   ClickHandler = () =>{
-
-    this.setState({persons : [
-      { name : 'Max 1', age : 28},
-      { name : 'Manu 2', age : 25},
-      { name : 'Step 2', age : 26},
-    ]});
-   }
-
   render (){
+  
     return(
     <div className="App">
       <header className="App-header">
        <h1>React App - Hello</h1>
+        <UserInput changeName={this.changeNames.bind(this)} />
 
-       <button onClick={this.ClickHandler}>Click me!</button>
-       <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-       <Person name={this.state.persons[1].name} age={this.state.persons[1].age} >ddd</Person>
-       <Person name={this.state.persons[2].name} age={this.state.persons[2].age} > Hobbies :  Play</Person>
+       <button onClick={this.changeNames.bind(this)} value="Change Name">Chnage Name</button>
+        <UserOutput   name={this.state[0].name} job={this.state[0].job} />
+        <UserOutput name={this.state[1].name} job={this.state[1].job} />
       </header>
     </div>
     )
