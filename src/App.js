@@ -1,35 +1,49 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserInput from './UserInput/UserInput'
-import UserOutput from './UserOutput/UserOutput'
+import Person from './Person/Person'
 
 class App extends Component {
 
-  state = [
-    {name : 'Pushpak', job : 'Dev'},
-    {name : 'Avani', job : 'QA'}
-  ]
 
-  changeNames(event)
-  { 
-    this.setState([ {name : event.target.value, job : 'Dev'},
-    {name : 'Avani 3', job : 'QA'}]
-     )
+  state = {
+    persons: [
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 25 },
+      { name: 'Step', age: 26 },
+
+
+    ],
+    toggleShowHidePerson: false
   }
 
-  render (){
-  
-    return(
-    <div className="App">
-      <header className="App-header">
-       <h1>React App - Hello</h1>
-        <UserInput changeName={this.changeNames.bind(this)} />
+  ClickHandler = () => {
+    const show = this.state.toggleShowHidePerson;
+    this.setState({ toggleShowHidePerson: !show });
+  }
 
-       <button onClick={this.changeNames.bind(this)} value="Change Name">Chnage Name</button>
-        <UserOutput   name={this.state[0].name} job={this.state[0].job} />
-        <UserOutput name={this.state[1].name} job={this.state[1].job} />
-      </header>
-    </div>
+  render() {
+  var person = null;
+    if(this.state.toggleShowHidePerson){
+      person = (
+        <div>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} >ddd</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} > Hobbies :  Play</Person>
+      </div>
+      )
+    }
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>React App - Hello</h1>
+          <button onClick={this.ClickHandler}>Click me!</button>
+       
+           {person}
+           
+          
+        </header>
+      </div>
     )
   }
 }
