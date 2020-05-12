@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit'
 import Radium from 'radium';
 
 
@@ -10,8 +11,6 @@ class App extends Component {
       { id: 1, name: 'Max', age: 28 },
       { id: 2, name: 'Manu', age: 25 },
       { id: 3, name: 'Step', age: 26 },
-
-
     ],
     toggleShowHidePerson: true
   }
@@ -28,21 +27,13 @@ class App extends Component {
   }
 
   render() {
-    const styles = {
-      backgroundColor: 'green',
-      textAlign: 'center',
-      padding: '5px',
-      ':hover': { backgroundColor: 'lightgray' }
-    }
-
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>React App - Hello</h1>
-        </header>
-        <button style={styles} onClick={this.ClickHandler}> Swtich Person</button>
+       <Cockpit ClickHandler={this.ClickHandler} />
         {
-        this.state.toggleShowHidePerson ?  <Persons persons={this.state.persons} deleteClickHandler={this.deleteClickHandler} /> : null
+           this.state.toggleShowHidePerson ? 
+            <Persons persons={this.state.persons} deleteClickHandler={this.deleteClickHandler} /> 
+            : null
         }
       </div>
     )
