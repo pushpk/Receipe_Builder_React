@@ -25,6 +25,16 @@ class App extends Component {
     persons.splice(index, 1);
     this.setState({ persons: persons })
   }
+  changeHandler = (event,index) => {
+    const persons = this.state.persons.slice()
+    const person = persons.find(s => s.id === index+1);
+
+    person.name = event.target.value;
+
+
+
+    this.setState({persons : persons})
+  }
 
   render() {
     return (
@@ -32,7 +42,9 @@ class App extends Component {
        <Cockpit ClickHandler={this.ClickHandler} />
         {
            this.state.toggleShowHidePerson ? 
-            <Persons persons={this.state.persons} deleteClickHandler={this.deleteClickHandler} /> 
+            <Persons persons={this.state.persons} 
+            deleteClickHandler={this.deleteClickHandler}
+            changeHandler = {this.changeHandler} /> 
             : null
         }
       </div>
