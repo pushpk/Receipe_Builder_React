@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { render } from '@testing-library/react';
 
-
-const person = (props) => {
-return(
-    <div onClick={props.click}>
-     <p> I am {props.name} and I am {props.age} old!</p>
-<p>{props.children}</p>
-     </div>
-     );
+class person extends Component {
+     render(props) {
+          return (
+               <div onClick={this.props.click}>
+                    <p> I am {this.props.name} and I am {this.props.age} old!</p>
+                    <p>{this.props.children}</p>
+               </div>
+          );
+     }
 }
-
 
 export default person;
 

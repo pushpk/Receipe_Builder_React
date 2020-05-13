@@ -3,9 +3,12 @@ import React from 'react';
 const Cockpit = (props) => 
 {
     const styles = {
-        backgroundColor: 'green',
+        backgroundColor: 'lightblue',
         textAlign: 'center',
-        padding: '5px',
+        padding: '15px',
+        borderRadius : '10%',
+        fontWeight : 'bold',
+
         ':hover': { backgroundColor: 'lightgray' }
       }
 
