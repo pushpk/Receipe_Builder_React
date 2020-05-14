@@ -12,7 +12,8 @@ class App extends Component {
       { id: 2, name: 'Manu', age: 25 },
       { id: 3, name: 'Step', age: 26 },
     ],
-    toggleShowHidePerson: true
+    toggleShowHidePerson: true,
+    countKeyStrokes : 0
   }
 
   ClickHandler = () => {
@@ -33,7 +34,16 @@ class App extends Component {
 
 
 
-    this.setState({persons : persons})
+
+    this.setState((prevstate,props) => {
+  return{
+
+    persons : persons,
+    countKeyStrokes : prevstate.countKeyStrokes + 1
+
+}
+
+    })
   }
 
   render() {

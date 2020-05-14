@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const Cockpit = (props) => 
 {
+    useEffect(() => {
+        console.log('[Cockpit] - hit')
+       
+    },[props.persons])
     const styles = {
         backgroundColor: 'lightblue',
         textAlign: 'center',
