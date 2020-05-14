@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Layout from '../components/Layout/Layout'
+import RecipeBuilder from './RecipeBuilder/RecipeBuilder'
 
 class App extends Component {
- 
+
   render() {
     return (
-      <div className="App">
-      <p>Hello, this is is new fonts</p>
+      <div>
+        <Layout>
+        <RecipeBuilder />
+        </Layout>
       </div>
     )
 
