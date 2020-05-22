@@ -1,4 +1,4 @@
-.Pizza {
+.BuildControls {
   width: 100%;
   background-color: #CF8F2E;
   display: flex;
@@ -7,4 +7,15 @@
   margin: auto;
 padding: 10px 0;
   
+}
+
+.BuildControls > div{
+  display: inherit !important;
+  text-align: center;
+  justify-content: center;
+}
+.Price{
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
 }

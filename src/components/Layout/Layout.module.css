@@ -1,3 +1,9 @@
 .Content{
     margin-top: 16px;
 }
+
+.Content > div{
+    height: 70vh;
+    overflow: scroll;
+}
+

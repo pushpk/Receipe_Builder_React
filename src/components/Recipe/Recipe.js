@@ -5,15 +5,16 @@ import RecipeIngredient from './RecipeIngredient/RecipeIngredient'
 const Recipe = (props) => {
 
     let transformedIngredients = Object.entries(props.ingredients).map((ingr) => {
-        
         if(ingr[1] > 0)
         {
-            console.log(ingr)
-            return <RecipeIngredient key={ingr[1]} type={ingr[0]} />
+            return [...Array(ingr[1] )].map(() => {
+                return <RecipeIngredient key={ingr[0] + ingr[1] + Math.random()} type={ingr[0]} />
+            });
         } 
-    }).reduce((arr, el) => { return arr ? arr : null },[]);
+    }).reduce((arr, el) => { 
+        return arr.concat(el)  },[]);
 
-    console.log(transformedIngredients);
+    console.log(transformedIngredients)
 
     if(transformedIngredients.length === 0)
     {
