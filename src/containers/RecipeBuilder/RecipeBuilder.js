@@ -12,13 +12,30 @@ class RecipeBuilder extends Component{
    
     state = {
         ingredients : {
-            salad: 1,
-            meat : 1,
-            bacon : 1,
-            cheese : 1
+            salad: 0,
+            meat : 0,
+            bacon : 0,
+            cheese : 0
            
         },
-        totalPrice : 4
+        totalPrice : 4,
+        purchasable : false
+    }
+
+    updatePurchaseState(ingredients){
+      
+
+        const sum = Object.keys(ingredients)
+                    .map(igKey => {
+                        return ingredients[igKey]
+                    })
+                    .reduce((sum, el) => {
+                        return sum + el;
+                    },0);
+
+        this.setState({purchasable : sum > 0})
+
+
     }
 
      
@@ -35,9 +52,16 @@ class RecipeBuilder extends Component{
         const newPrice = oldPrice + priceAddtion;
         updatedIngredients[type] = updatedCount;
 
+        
+      
+      
         this.setState(
          { ingredients : updatedIngredients, totalPrice: newPrice }
+        
       )
+
+      this.updatePurchaseState(updatedIngredients);
+
 
       
     }
@@ -57,10 +81,12 @@ class RecipeBuilder extends Component{
         const newPrice = oldPrice - priceSub;
         updatedIngredients[type] = updatedCount;
 
+        
         this.setState(
-         { ingredients : updatedIngredients, totalPrice: newPrice })
+         { ingredients : updatedIngredients, totalPrice: newPrice });
+         this.updatePurchaseState(updatedIngredients);
 
-       
+        
     }
 
 
@@ -87,6 +113,7 @@ class RecipeBuilder extends Component{
            ingredientRemoved = {(event) => this.removeIngredientHandler(event)}
            disabled= {disabledInfo}
            totalPrice = { this.state.totalPrice}
+           purchasable = {this.state.purchasable}
            />
            
            </> 
