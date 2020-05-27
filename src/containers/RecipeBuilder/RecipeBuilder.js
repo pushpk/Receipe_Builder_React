@@ -79,6 +79,7 @@ class RecipeBuilder extends Component{
 
         return(
            < >
+           
            <div style={style}>
             <Recipe ingredients={this.state.ingredients}/>
            </div>
