@@ -1,6 +1,8 @@
 import React,{ Component } from "react";
 import Recipe from '../../components/Recipe/Recipe'
 import BuildControls from '../../components/Recipe/BuildControls/BuildControls'
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from  '../../components/Recipe/OrderSummary/OrderSummary'
 
 const INGREDIENT_PRICE = {
     salad : 0.5,
@@ -19,9 +21,14 @@ class RecipeBuilder extends Component{
            
         },
         totalPrice : 4,
-        purchasable : false
+        purchasable : false,
+        purchasing: false
     }
 
+    purchaseHandler(){
+        this.setState({purchasing : true});
+
+    }
     updatePurchaseState(ingredients){
       
 
@@ -89,7 +96,9 @@ class RecipeBuilder extends Component{
         
     }
 
-
+    purchaseCancel(){
+        this.setState({purchasing : false});
+    }
 
     render(){
         const style = {
@@ -105,7 +114,9 @@ class RecipeBuilder extends Component{
 
         return(
            < >
-           
+           <Modal show={this.state.purchasing} modalClosed={() => this.purchaseCancel()}>
+               <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+           </Modal>
            <div style={style}>
             <Recipe ingredients={this.state.ingredients}/>
            </div>
@@ -114,6 +125,7 @@ class RecipeBuilder extends Component{
            disabled= {disabledInfo}
            totalPrice = { this.state.totalPrice}
            purchasable = {this.state.purchasable}
+           purchaseMode = {() => this.purchaseHandler()}
            />
            
            </> 
