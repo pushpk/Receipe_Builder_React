@@ -99,6 +99,10 @@ class RecipeBuilder extends Component{
     purchaseCancel(){
         this.setState({purchasing : false});
     }
+    purchaseContinue()
+    {
+        alert("Purchased!");
+    }
 
     render(){
         const style = {
@@ -115,7 +119,12 @@ class RecipeBuilder extends Component{
         return(
            < >
            <Modal show={this.state.purchasing} modalClosed={() => this.purchaseCancel()}>
-               <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+               <OrderSummary 
+               ingredients={this.state.ingredients}
+               purchaseCancelled = {() => this.purchaseCancel()}
+               purchaseContinue = {() => this.purchaseContinue()}
+
+               ></OrderSummary>
            </Modal>
            <div style={style}>
             <Recipe ingredients={this.state.ingredients}/>
